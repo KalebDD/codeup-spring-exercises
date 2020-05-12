@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Secret Page - Roll the Dice!</title>
+    <!-- Header Information -->
+    <div th:replace="partials/partials :: head"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav th:replace="partials/partials :: navbar"/>
+
+<div class="container">
+    <h1>Guess the dice roll!</h1>
+    <h2>Click a link below, and see if you guessed correctly!</h2>
+
+        <!-- List for links to guess dice-roll -->
+        <ul>
+            <li><a href="/roll-dice/1">1</a></li>
+            <li><a href="/roll-dice/2">2</a></li>
+            <li><a href="/roll-dice/3">3</a></li>
+            <li><a href="/roll-dice/4">4</a></li>
+            <li><a href="/roll-dice/5">5</a></li>
+            <li><a href="/roll-dice/6">6</a></li>
+        </ul>
+
+    <div th:text="${response}"></div>
+</div>
+
+<!-- JS scripts -->
+<div th:replace="partials/partials :: footer"/>
+</body>
+</html>
