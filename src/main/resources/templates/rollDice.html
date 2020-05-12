@@ -13,20 +13,20 @@
 <nav th:replace="partials/partials :: navbar"/>
 
 <div class="container">
-    <h1>Guess the dice roll!</h1>
-    <h2>Click a link below, and see if you guessed correctly!</h2>
+    <h1 class="">The Secret Dice Roll Game</h1>
+    <h2 class="">Click a link below, try to guess the dice roll!</h2>
 
-        <!-- List for links to guess dice-roll -->
-        <ul>
-            <li><a href="/roll-dice/1">1</a></li>
-            <li><a href="/roll-dice/2">2</a></li>
-            <li><a href="/roll-dice/3">3</a></li>
-            <li><a href="/roll-dice/4">4</a></li>
-            <li><a href="/roll-dice/5">5</a></li>
-            <li><a href="/roll-dice/6">6</a></li>
-        </ul>
+    <!-- buttons for links to guess dice-roll -->
+    <div class="">
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/1">1</a></button>
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/2">2</a></button>
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/3">3</a></button>
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/4">4</a></button>
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/5">5</a></button>
+        <button type="button" class="btn btn-primary btn-lg"><a href="/roll-dice/6">6</a></button>
+    </div>
 
-    <div th:text="${response}"></div>
+    <h3 class="" th:text="${response}"></h3>
 </div>
 
 <!-- JS scripts -->
