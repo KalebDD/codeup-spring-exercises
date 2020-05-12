@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Single Post</title>
+    <div th:replace="partials/partials :: head"/>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"/>
+
+<div class="container">
+    <h1>Single Post</h1>
+    <p style="color: firebrick; font-weight: bold;" th:text="${postTitle}"></p>
+    <p th:text="${postDescription}"></p>
+</div>
+
+<div th:replace="partials/partials :: footer"/>
+</body>
+</html>

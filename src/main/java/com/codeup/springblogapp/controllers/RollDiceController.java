@@ -18,8 +18,8 @@ public class RollDiceController {
 
         int diceRoll = (int) (1 + (Math.random() * 6));
 
-        String response = "You rolled a: " + num + ". "
-                + "The dice rolled a: " + diceRoll + ". ";
+        String response = "You rolled a " + num + ". "
+                + "The dice rolled a " + diceRoll + ". ";
 
         if (num == diceRoll) {
             response += "It's a match!";
