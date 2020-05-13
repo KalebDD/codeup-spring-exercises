@@ -9,10 +9,14 @@
 
 <div class="container">
     <h1>All Posts</h1>
-    <div th:each="post : ${postList}">
-        <p style="color: firebrick; font-weight: bold;" th:text="${post.title}"></p>
-        <p th:text="${post.description}"></p>
-    </div>
+    <form action="/posts/delete" method="post">
+        <div th:each="post : ${allPosts}">
+            <p style="color: firebrick; font-weight: bold;" th:text="${post.title}"></p>
+            <p th:text="${post.description}"></p>
+            <button name="edit" th:value="${post.id}">Edit</button>
+            <button name="delete" th:value="${post.id}">Delete</button>
+        </div>
+    </form>
 </div>
 <div th:replace="partials/partials :: footer"/>
 </body>

@@ -26,8 +26,15 @@ public class PostController {
     @GetMapping("/posts/index")
     public String viewAllPosts(Model model) {
 
-        model.addAttribute("postList", postDao.findAll());
+        model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
+    }
+
+    @PostMapping("/posts/delete")
+    public String viewAllPosts(@RequestParam(name = "delete") long id) {
+
+        postDao.deleteById(id);
+       return "redirect:/posts/index";
     }
 
     @GetMapping("/posts/show")
