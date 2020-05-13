@@ -1,25 +1,25 @@
 package com.codeup.springblogapp.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String title;
+
+    @Column (length = 5000)
     private String description;
 
     public Post() {}
 
-
-    public Post(int id, String title, String description) {
-        this.id = id;
+    public Post(String title, String description) {
         this.title = title;
         this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
