@@ -43,7 +43,7 @@ public class PostController {
         Post createPost = new Post(title, description);
         postDao.save(createPost);
 
-        return "posts/create";
+        return "redirect:/posts/index";
     }
 
     // Edit - allow user to edit posts

@@ -13,20 +13,22 @@
 
 <div class="container">
     <h1>All Posts</h1>
-    <!-- all posts in db -->
+    <span><a href="/posts/create">Create A Post</a></span>
+    <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
         <h5 th:text="${post.description}"></h5>
 
-        <!-- Button trigger modal -->
+        <!-- Button trigger Edit Modal -->
         <button type="button" class="btn btn-primary" name="edit" th:value="${post.id}" data-toggle="modal"
                 data-target="#editModal">
             Edit
         </button>
 
-        <!-- Modal -->
+        <!-- Edit Modal -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
              aria-hidden="true">
+            <!-- Edit Form -->
             <form action="/posts/edit" method="post">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -39,6 +41,7 @@
                             <textarea class="form-control" name="editDescription"></textarea>
                         </div>
                         <div class="modal-footer">
+                            <!-- Pass post.id on btn click -->
                             <button type="submit" class="btn btn-primary" name="edit" th:value="${post.id}">Save
                                 changes
                             </button>
@@ -48,9 +51,33 @@
                 </div>
             </form>
         </div>
-        <form action="/posts/delete" method="post">
-            <button class="btn btn-lg" name="delete" th:value="${post.id}">Delete</button>
-        </form>
+
+        <!-- Button trigger Delete Modal-->
+            <button class="btn btn-danger" name="delete" th:value="${post.id}" data-toggle="modal" data-target="#deleteModal">Delete</button>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+             aria-hidden="true">
+            <!-- Delete Form -->
+            <form action="/posts/delete" method="post">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteodalLabel">Delete Post</h5>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="">Are you sure? This action is final.</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Pass post.id on btn click -->
+                            <button type="submit" class="btn btn-danger" name="delete" th:value="${post.id}">Delete Post
+                            </button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
