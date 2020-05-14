@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -22,30 +23,14 @@ public class PostController {
     }
 
 
-    // Main page - show all the posts for the user
+    // Main - show all the posts for the user
     @GetMapping("/posts/index")
     public String viewAllPosts(Model model) {
-
         model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
     }
 
-    @PostMapping("/posts/delete")
-    public String viewAllPosts(@RequestParam(name = "delete") long id) {
-
-        postDao.deleteById(id);
-       return "redirect:/posts/index";
-    }
-
-    @GetMapping("/posts/show")
-    public String viewIndividualPost(Model model) {
-        Post singlePost = new Post("Post 3 Title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-
-        model.addAttribute("postTitle", singlePost.getTitle());
-        model.addAttribute("postDescription", singlePost.getDescription());
-        return "posts/show";
-    }
-
+    // Create - new post
     @GetMapping("/posts/create")
     public String viewCreatePost() {
         return "posts/create";
@@ -59,5 +44,37 @@ public class PostController {
         postDao.save(createPost);
 
         return "posts/create";
+    }
+
+    // Edit - allow user to edit posts
+    @PostMapping("/posts/edit")
+    public String editPost(@RequestParam(name = "editTitle") String title,
+                           @RequestParam(name = "editDescription") String description,
+                           @RequestParam(name = "edit") long id) {
+
+        System.out.println("You got here.");
+        Post editPost = postDao.findById(id);
+        editPost.setTitle(title);
+        editPost.setDescription(description);
+        postDao.save(editPost);
+
+        return "redirect:/posts/index";
+    }
+
+    // Delete - allow user to delete posts
+    @PostMapping("/posts/delete")
+    public String deletePost(@RequestParam(name = "delete") long id) {
+        postDao.deleteById(id);
+        return "redirect:/posts/index";
+    }
+
+    // View - single post
+    @GetMapping("/posts/show")
+    public String viewIndividualPost(Model model) {
+        Post singlePost = new Post("Post 3 Title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
+        model.addAttribute("postTitle", singlePost.getTitle());
+        model.addAttribute("postDescription", singlePost.getDescription());
+        return "posts/show";
     }
 }

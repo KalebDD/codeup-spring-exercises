@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <title>All Posts</title>
+
+    <!-- Head -->
     <div th:replace="partials/partials :: head"/>
 </head>
 <body>
+
+<!-- Navbar -->
 <nav th:replace="partials/partials :: navbar"/>
 
 <div class="container">
     <h1>All Posts</h1>
-    <form action="/posts/delete" method="post">
-        <div th:each="post : ${allPosts}">
-            <p style="color: firebrick; font-weight: bold;" th:text="${post.title}"></p>
-            <p th:text="${post.description}"></p>
-            <button name="edit" th:value="${post.id}">Edit</button>
-            <button name="delete" th:value="${post.id}">Delete</button>
+    <!-- all posts in db -->
+    <div th:each="post : ${allPosts}">
+        <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
+        <h5 th:text="${post.description}"></h5>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" name="edit" th:value="${post.id}" data-toggle="modal"
+                data-target="#editModal">
+            Edit
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+             aria-hidden="true">
+            <form action="/posts/edit" method="post">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Title</h5>
+                            <input type="text" class="form-control" name="editTitle"/>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="">Edit Description</h5>
+                            <textarea class="form-control" name="editDescription"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="edit" th:value="${post.id}">Save
+                                changes
+                            </button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+        <form action="/posts/delete" method="post">
+            <button class="btn btn-lg" name="delete" th:value="${post.id}">Delete</button>
+        </form>
+    </div>
 </div>
+
+<!-- Footer -->
 <div th:replace="partials/partials :: footer"/>
 </body>
 </html>

@@ -10,7 +10,7 @@ public class RollDiceController {
 
     @GetMapping("/roll-dice")
     public String showRollDice() {
-        return "rollDice";
+        return "codeup/rollDice";
     }
 
     @GetMapping("/roll-dice/{num}")
@@ -28,7 +28,7 @@ public class RollDiceController {
         }
 
         model.addAttribute("response", response);
-        return "rollDice";
+        return "codeup/rollDice";
     }
 
 }
