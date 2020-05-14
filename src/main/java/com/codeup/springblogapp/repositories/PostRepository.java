@@ -9,6 +9,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Post findById(long id);
 
-//    @Query("UPDATE posts WHERE id = id")
-//    Post saveById(long id);
 }

@@ -1,1 +1,1 @@
-// window.onload = function(){ alert("Hi there");}
+// window.onload = function(){ alert("Hi there.");}

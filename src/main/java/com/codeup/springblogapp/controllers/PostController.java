@@ -7,11 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -37,8 +32,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "title") String title,
-                             @RequestParam(name = "description") String description) {
+    public String createPost(@RequestParam(name = "createTitle") String title,
+                             @RequestParam(name = "createDescription") String description) {
 
         Post createPost = new Post(title, description);
         postDao.save(createPost);

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/partials :: head"/>
     <title>All Posts</title>
-
-    <!-- Head -->
-    <div th:replace="partials/partials :: head"/>
 </head>
 <body>
 
@@ -13,7 +10,38 @@
 
 <div class="container">
     <h1>All Posts</h1>
-    <span><a href="/posts/create">Create A Post</a></span>
+
+    <!-- Button trigger Create Modal -->
+    <button type="button" class="btn btn-primary" name="create" data-toggle="modal"
+            data-target="#createModal">
+        Create A Post
+    </button>
+
+    <!-- Create Modal -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+         aria-hidden="true">
+        <!-- Create Form -->
+        <form action="/posts/create" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div claxs="modal-header">
+                        <h2 class="modal-title text-center" id="createModalLabel">Create New Post</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="">Title</h3>
+                        <input type="text" class="form-control" name="createTitle"/>
+                        <h3 class="">Description</h3>
+                        <textarea class="form-control" name="createDescription"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="create">Create Post</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
@@ -33,12 +61,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editModalLabel">Edit Title</h5>
+                            <h3 class="modal-title" id="editModalLabel">Edit Title</h3>
                             <input type="text" class="form-control" name="editTitle"/>
                         </div>
                         <div class="modal-body">
-                            <h5 class="">Edit Description</h5>
-                            <textarea class="form-control" name="editDescription"></textarea>
+                            <h3 class="">Edit Description</h3>
+                            <p id="subtext">* 5,000 characters or less</p>
+                            <textarea class="form-control" name="editDescription" th:value="${post.description}"></textarea>
                         </div>
                         <div class="modal-footer">
                             <!-- Pass post.id on btn click -->
@@ -62,17 +91,15 @@
             <form action="/posts/delete" method="post">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteodalLabel">Delete Post</h5>
-                        </div>
                         <div class="modal-body">
-                            <h5 class="">Are you sure? This action is final.</h5>
+                            <h2 class="modal-title text-center" id="deleteModalLabel">Delete Post</h2>
+                            <h4 class="text-center">Are you sure? This action is final.</h4>
                         </div>
                         <div class="modal-footer">
                             <!-- Pass post.id on btn click -->
                             <button type="submit" class="btn btn-danger" name="delete" th:value="${post.id}">Delete Post
                             </button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
