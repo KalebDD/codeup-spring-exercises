@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"/>
-    <title>All Posts</title>
+<title>All Posts</title>
 </head>
 <body>
 
@@ -12,7 +12,7 @@
     <h1>All Posts</h1>
 
     <!-- Button trigger Create Modal -->
-    <button type="button" class="btn btn-primary" name="create" data-toggle="modal"
+    <button type="button" class="btn btn-lg btn-warning" name="create" data-toggle="modal"
             data-target="#createModal">
         Create A Post
     </button>
@@ -22,16 +22,18 @@
          aria-hidden="true">
         <!-- Create Form -->
         <form action="/posts/create" method="post">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div claxs="modal-header">
+                    <div class="modal-header">
                         <h2 class="modal-title text-center" id="createModalLabel">Create New Post</h2>
                     </div>
                     <div class="modal-body">
                         <h3 class="">Title</h3>
+                        <!-- Grab createTitle Here -->
                         <input type="text" class="form-control" name="createTitle"/>
                         <h3 class="">Description</h3>
-                        <textarea class="form-control" name="createDescription"></textarea>
+                        <!-- Grab createDescription Here -->
+                        <textarea class="form-control" name="createDescription" rows="8"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="create">Create Post</button>
@@ -45,35 +47,35 @@
     <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
-        <h5 th:text="${post.description}"></h5>
+        <span name="id" th:value="${post.id}" th:text="${post.id}"></span>
+        <h4 th:text="${post.description}"></h4>
 
         <!-- Button trigger Edit Modal -->
-        <button type="button" class="btn btn-primary" name="edit" th:value="${post.id}" data-toggle="modal"
-                data-target="#editModal">
-            Edit
-        </button>
+        <!-- Pass post.id on btn click, store it in form input #postId -->
+        <button type="button" class="btn btn-primary editPostButton" data-toggle="modal" data-target="#editModal" th:data-id="${post.id}">Edit</button>
 
         <!-- Edit Modal -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
              aria-hidden="true">
             <!-- Edit Form -->
             <form action="/posts/edit" method="post">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
+                        <!-- Get ID here from custom.js-->
+                        <input type="hidden" name="id" id="editPostId"/>
                         <div class="modal-header">
                             <h3 class="modal-title" id="editModalLabel">Edit Title</h3>
+                            <!-- Grab Title Here -->
                             <input type="text" class="form-control" name="editTitle"/>
                         </div>
                         <div class="modal-body">
-                            <h3 class="">Edit Description</h3>
+                            <h3>Edit Description</h3>
                             <p id="subtext">* 5,000 characters or less</p>
-                            <textarea class="form-control" name="editDescription" th:value="${post.description}"></textarea>
+                            <!-- Grab Description Here -->
+                            <textarea class="form-control" name="editDescription" rows="8"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <!-- Pass post.id on btn click -->
-                            <button type="submit" class="btn btn-primary" name="edit" th:value="${post.id}">Save
-                                changes
-                            </button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -82,7 +84,7 @@
         </div>
 
         <!-- Button trigger Delete Modal-->
-            <button class="btn btn-danger" name="delete" th:value="${post.id}" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:data-id="${post.id}">Delete</button>
 
         <!-- Delete Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
@@ -91,14 +93,14 @@
             <form action="/posts/delete" method="post">
                 <div class="modal-dialog">
                     <div class="modal-content">
+                        <!-- Get ID here from custom.js-->
+                        <input type="hidden" name="id" id="deletePostId"/>
                         <div class="modal-body">
                             <h2 class="modal-title text-center" id="deleteModalLabel">Delete Post</h2>
                             <h4 class="text-center">Are you sure? This action is final.</h4>
                         </div>
                         <div class="modal-footer">
-                            <!-- Pass post.id on btn click -->
-                            <button type="submit" class="btn btn-danger" name="delete" th:value="${post.id}">Delete Post
-                            </button>
+                            <button type="submit" class="btn btn-danger">Delete Post</button>
                             <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

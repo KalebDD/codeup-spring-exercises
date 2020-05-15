@@ -37,7 +37,6 @@ public class PostController {
 
         Post createPost = new Post(title, description);
         postDao.save(createPost);
-
         return "redirect:/posts/index";
     }
 
@@ -45,9 +44,9 @@ public class PostController {
     @PostMapping("/posts/edit")
     public String editPost(@RequestParam(name = "editTitle") String title,
                            @RequestParam(name = "editDescription") String description,
-                           @RequestParam(name = "edit") long id) {
+                           @RequestParam(name = "id") long id) {
 
-        System.out.println("You got here.");
+
         Post editPost = postDao.findById(id);
         editPost.setTitle(title);
         editPost.setDescription(description);
@@ -58,7 +57,7 @@ public class PostController {
 
     // Delete - allow user to delete posts
     @PostMapping("/posts/delete")
-    public String deletePost(@RequestParam(name = "delete") long id) {
+    public String deletePost(@RequestParam(name = "id") long id) {
         postDao.deleteById(id);
         return "redirect:/posts/index";
     }
