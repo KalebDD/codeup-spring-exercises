@@ -13,7 +13,7 @@
 <div class="container">
 
     <h1>All Posts</h1>
-    <!-- Button trigger Create Modal -->
+    <!-- Button Create Modal -->
     <button type="button" class="btn btn-lg btn-warning" name="create" data-toggle="modal" data-target="#createModal">
         Create A Post
     </button>
@@ -24,12 +24,12 @@
         <span name="id" th:value="${post.id}" th:text="${post.id}"></span>
         <h4 th:text="${post.description}"></h4>
 
-        <!-- Button trigger Edit Modal -->
-        <button type="button" class="btn btn-primary editPostButton" data-toggle="modal" data-target="#editModal"
-                th:data-id="${post.id}">Edit
+        <!-- Button Edit Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                th:data-id="${post.id}" th:data-title="${post.title}" th:data-description="${post.description}">Edit
         </button>
 
-        <!-- Button trigger Delete Modal-->
+        <!-- Button Delete Modal-->
         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:data-id="${post.id}">Delete
         </button>
     </div>

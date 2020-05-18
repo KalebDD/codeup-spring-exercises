@@ -29,7 +29,7 @@
          aria-labelledby="createModalLabel"
          aria-hidden="true">
         <!-- Create Form -->
-        <form action="#" th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -38,10 +38,10 @@
                     <div class="modal-body">
                         <h3 class="">Title</h3>
                         <!-- Grab createTitle Here -->
-                        <input type="text" class="form-control" name="createTitle" th:field="*{title}"/>
+                        <input type="text" class="form-control" th:field="*{title}"/>
                         <h3 class="">Description</h3>
                         <!-- Grab createDescription Here -->
-                        <textarea class="form-control" name="createDescription" rows="8" th:field="*{description}"></textarea>
+                        <textarea class="form-control" rows="8" th:field="*{description}"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="create">Create Post</button>
@@ -57,21 +57,21 @@
          aria-labelledby="editModalLabel"
          aria-hidden="true">
         <!-- Edit Form -->
-        <form action="/posts/edit" method="post">
+        <form th:action="@{/posts/edit}" method="post" th:object="${post}">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <!-- Get ID here from custom.js-->
-                    <input type="hidden" name="id" id="editPostId"/>
+                    <input type="hidden" id="editPostId" th:field="*{id}"/>
                     <div class="modal-header">
                         <h3 class="modal-title" id="editModalLabel">Edit Title</h3>
-                        <!-- Grab Title Here -->
-                        <input type="text" class="form-control" name="editTitle"/>
+                        <!-- Populate title here from custom.js & POST new value (if any) -->
+                        <input type="text" class="form-control" id="editPostTitle" th:field="*{title}"/>
                     </div>
                     <div class="modal-body">
                         <h3>Edit Description</h3>
                         <p id="subtext">* 5,000 characters or less</p>
-                        <!-- Grab Description Here -->
-                        <textarea class="form-control" name="editDescription" rows="8"></textarea>
+                        <!-- Populate description here from custom.js & POST new value (if any) -->
+                        <textarea class="form-control" rows="8" id="editPostDescription" th:field="*{description}"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -86,11 +86,11 @@
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
          aria-hidden="true">
         <!-- Delete Form -->
-        <form action="/posts/delete" method="post">
+        <form th:action="@{/posts/delete}" method="post" th:object="${post}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <!-- Get ID here from custom.js-->
-                    <input type="hidden" name="id" id="deletePostId"/>
+                    <input type="hidden" name="deletePostId" id="deletePostId"/>
                     <div class="modal-body">
                         <h2 class="modal-title text-center" id="deleteModalLabel">Delete Post</h2>
                         <h4 class="text-center">Are you sure? This action is final.</h4>

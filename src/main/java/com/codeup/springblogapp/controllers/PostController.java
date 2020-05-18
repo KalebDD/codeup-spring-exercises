@@ -31,50 +31,27 @@ public class PostController {
         return "posts/index";
     }
 
-
     // Create - new post
-    @GetMapping("/posts/create")
-    public String viewCreatePost() {
-        return "posts/create";
-    }
-
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
         User user = userDao.getOne(1L);
         post.setOwner(user);
         postDao.save(post);
         return "redirect:/posts/index";
-
     }
-
-//    @PostMapping("/posts/create")
-//    public String createPost(@RequestParam(name = "createTitle") String title,
-//                             @RequestParam(name = "createDescription") String description) {
-//
-//        Post createPost = new Post(title, description);
-//        User user = userDao.getOne(1L);
-//        createPost.setOwner(user);
-//        postDao.save(createPost);
-//        return "redirect:/posts/index";
-//    }
 
     // Edit - allow user to edit posts
     @PostMapping("/posts/edit")
-    public String editPost(@RequestParam(name = "editTitle") String title,
-                           @RequestParam(name = "editDescription") String description,
-                           @RequestParam(name = "id") long id) {
-
-        Post editPost = postDao.findById(id);
-        editPost.setTitle(title);
-        editPost.setDescription(description);
-        postDao.save(editPost);
-
+    public String editPost(@ModelAttribute Post post) {
+        User user = userDao.getOne(1L);
+        post.setOwner(user);
+        postDao.save(post);
         return "redirect:/posts/index";
     }
 
     // Delete - allow user to delete posts
     @PostMapping("/posts/delete")
-    public String deletePost(@RequestParam(name = "id") long id) {
+    public String deletePost(@RequestParam(name = "deletePostId") long id) {
         postDao.deleteById(id);
         return "redirect:/posts/index";
     }
