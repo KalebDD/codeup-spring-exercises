@@ -1,29 +1,36 @@
 package com.codeup.springblogapp.controllers;
 
 import com.codeup.springblogapp.model.Post;
+import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
+import com.codeup.springblogapp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    // constructor for controller - gain access to Dao
-    public PostController(PostRepository postDao) {
+    // Access to all necessary repos
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
 
     // Main - show all the posts for the user
     @GetMapping("/posts/index")
     public String viewAllPosts(Model model) {
+        model.addAttribute("post", new Post());
         model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
     }
+
 
     // Create - new post
     @GetMapping("/posts/create")
@@ -32,20 +39,30 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "createTitle") String title,
-                             @RequestParam(name = "createDescription") String description) {
-
-        Post createPost = new Post(title, description);
-        postDao.save(createPost);
+    public String createPost(@ModelAttribute Post post) {
+        User user = userDao.getOne(1L);
+        post.setOwner(user);
+        postDao.save(post);
         return "redirect:/posts/index";
+
     }
+
+//    @PostMapping("/posts/create")
+//    public String createPost(@RequestParam(name = "createTitle") String title,
+//                             @RequestParam(name = "createDescription") String description) {
+//
+//        Post createPost = new Post(title, description);
+//        User user = userDao.getOne(1L);
+//        createPost.setOwner(user);
+//        postDao.save(createPost);
+//        return "redirect:/posts/index";
+//    }
 
     // Edit - allow user to edit posts
     @PostMapping("/posts/edit")
     public String editPost(@RequestParam(name = "editTitle") String title,
                            @RequestParam(name = "editDescription") String description,
                            @RequestParam(name = "id") long id) {
-
 
         Post editPost = postDao.findById(id);
         editPost.setTitle(title);
