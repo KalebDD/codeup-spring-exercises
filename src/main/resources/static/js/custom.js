@@ -10,7 +10,6 @@ $('#editModal').on('show.bs.modal', function (e) {
     modal.find('#editPostId').val(postId);
     modal.find('#editPostTitle').val(postTitle);
     modal.find('#editPostDescription').val(postDescription);
-
 });
 
 

@@ -12,9 +12,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (length = 50, unique=true)
+    @Column (length = 50, unique = true)
     private String username;
 
+    @Column (unique = true)
     private String email;
 
     @Column
@@ -26,6 +27,15 @@ public class User {
 
 
     public User() { }
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
+
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }

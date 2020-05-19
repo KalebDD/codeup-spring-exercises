@@ -12,25 +12,27 @@
 
 <div class="container">
 
-    <h1>All Posts</h1>
+    <h1 class="title">All Posts</h1>
     <!-- Button Create Modal -->
-    <button type="button" class="btn btn-lg btn-warning" name="create" data-toggle="modal" data-target="#createModal">
-        Create A Post
+    <button type="button" class="btn btn-warning createButton" name="create" data-toggle="modal"
+            data-target="#createModal">
+        Create New
     </button>
 
     <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
-        <span name="id" th:value="${post.id}" th:text="${post.id}"></span>
         <h4 th:text="${post.description}"></h4>
 
         <!-- Button Edit Modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
-                th:data-id="${post.id}" th:data-title="${post.title}" th:data-description="${post.description}">Edit
+        <button type="button" class="btn btn-m btn-primary" data-toggle="modal" data-target="#editModal"
+                th:data-id="${post.id}" th:data-title="${post.title}" th:data-description="${post.description}" th:data-post="${post}">
+            Edit
         </button>
 
         <!-- Button Delete Modal-->
-        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:data-id="${post.id}">Delete
+        <button class="btn btn-m btn-danger" data-toggle="modal" data-target="#deleteModal" th:data-id="${post.id}">
+            Delete
         </button>
     </div>
 

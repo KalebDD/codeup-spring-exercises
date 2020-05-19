@@ -17,7 +17,24 @@
         <li><a href="/hello">Hello</a></li>
         <li><a href="/join">Join</a></li>
         <li><a href="/welcome">Welcome</a></li>
+    </ul>
+</nav>
 
+<!-- Exercises Navbar -->
+<nav th:fragment="exercisesNavbar">
+    <ul class="nav navbar-nav">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/hello">Hello</a></li>
+        <li><a href="/join">Join</a></li>
+        <li><a href="/welcome">Welcome</a></li>
+    </ul>
+</nav>
+
+<!-- Blog Navbar -->
+<nav th:fragment="blogPostNavbar">
+    <ul class="nav navbar-nav">
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Welcome</a></li>
     </ul>
 </nav>
 
@@ -71,7 +88,8 @@
                         <h3>Edit Description</h3>
                         <p id="subtext">* 5,000 characters or less</p>
                         <!-- Populate description here from custom.js & POST new value (if any) -->
-                        <textarea class="form-control" rows="8" id="editPostDescription" th:field="*{description}"></textarea>
+                        <textarea class="form-control" rows="8" id="editPostDescription"
+                                  th:field="*{description}"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save Changes</button>

@@ -4,6 +4,8 @@ import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
+import com.codeup.springblogapp.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
+//    private final EmailService emailService;
+
+    // Email injection
+//    public PostController(EmailService emailService) {
+//        this.emailService = emailService;
+//    }
 
     // Access to all necessary repos
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
     }
-
+    @Autowired
+    EmailService emailService;
 
     // Main - show all the posts for the user
     @GetMapping("/posts/index")
