@@ -12,29 +12,23 @@
 <body>
 <!-- Navbar -->
 <nav th:fragment="navbar" class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/hello">Hello</a></li>
-        <li><a href="/join">Join</a></li>
-        <li><a href="/welcome">Welcome</a></li>
+    <ul class="nav navbar-nav mr-auto">
+        <li><a href="/posts">View Posts</a></li>
+        <li><a href="/users/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
     </ul>
-</nav>
-
-<!-- Exercises Navbar -->
-<nav th:fragment="exercisesNavbar">
-    <ul class="nav navbar-nav">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/hello">Hello</a></li>
-        <li><a href="/join">Join</a></li>
-        <li><a href="/welcome">Welcome</a></li>
-    </ul>
-</nav>
-
-<!-- Blog Navbar -->
-<nav th:fragment="blogPostNavbar">
-    <ul class="nav navbar-nav">
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Welcome</a></li>
+    <ul class="nav navbar-nav navbar-right userNav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/profile">My Posts</a></li>
+                <li><a href="#">My Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn btn-warning" style="margin-top: 8px">Logout</button>
+                </form>
+            </ul>
+        </li>
     </ul>
 </nav>
 

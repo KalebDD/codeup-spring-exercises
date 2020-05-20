@@ -1,6 +1,8 @@
 package com.codeup.springblogapp.controllers;
 
+import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
+import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,25 +13,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private UserRepository users;
     private PasswordEncoder passwordEncoder;
+    private final PostRepository postDao;
+    private final UserRepository users;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
-        this.users = users;
+    public UserController(PostRepository postDao, UserRepository users, PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+        this.postDao = postDao;
+        this.users = users;
     }
 
-    @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    @GetMapping("/users/register")
+    public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "posts/register";
+        return "users/register";
     }
 
-    @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    @PostMapping("/users/register")
+    public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
-        return "redirect:/login";
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/profile")
+    public String showUserProfile(Model model) {
+        model.addAttribute("post", new Post());
+        model.addAttribute("allPosts", postDao.findAll());
+        return "users/profile";
     }
 }
