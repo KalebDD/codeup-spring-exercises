@@ -5,6 +5,7 @@ import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
 import com.codeup.springblogapp.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,34 +27,43 @@ public class PostController {
         this.emailService = emailService;
     }
 
-    // Main - show all the posts for the user
+    // Main - show all the posts for the user ==========================
     @GetMapping("/posts")
     public String viewAllPosts(Model model) {
-        model.addAttribute("post", new Post());
         model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
     }
 
-    // Create - new post
+    // Create - new post ==========================
     // No HTML @ this URL
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        User user = userDao.getOne(1L);
+        // Spring security methods to get currently logged-in user object
+        // More details
+        // https://docs.spring.io/spring-security/site/docs/5.1.6.RELEASE/reference/html/overall-architecture.html
+        // https://stackoverflow.com/questions/45461091/spring-mvc-getting-user-id-from-logged-user
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
         postDao.save(post);
         return "redirect:/profile";
     }
 
-    // Edit - allow user to edit posts
+    // Edit - allow user to edit posts ==========================
+    // No HTML @ this URL
     @PostMapping("/posts/edit")
     public String editPost(@ModelAttribute Post post) {
-        User user = userDao.getOne(1L);
+        // Spring security methods to get currently logged-in user object
+        // More details
+        // https://docs.spring.io/spring-security/site/docs/5.1.6.RELEASE/reference/html/overall-architecture.html
+        // https://stackoverflow.com/questions/45461091/spring-mvc-getting-user-id-from-logged-user
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
         postDao.save(post);
         return "redirect:/profile";
     }
 
-    // Delete - allow user to delete posts
+    // Delete - allow user to delete posts ==========================
+    // No HTML @ this URL
     @PostMapping("/posts/delete")
     public String deletePost(@RequestParam(name = "deletePostId") long id) {
         postDao.deleteById(id);

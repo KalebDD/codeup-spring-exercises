@@ -4,6 +4,7 @@ import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +40,10 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showUserProfile(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
         model.addAttribute("post", new Post());
-        model.addAttribute("allPosts", postDao.findAll());
+        model.addAttribute("allPosts", postDao.findAllByOwner_Id(id));
         return "users/profile";
     }
 }

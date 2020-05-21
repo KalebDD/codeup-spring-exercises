@@ -82,18 +82,6 @@ public class PostsIntegrationTests {
                 .andExpect(status().is3xxRedirection());
     }
 
-//    @Test
-//    public void testShowPost() throws Exception {
-//
-//        Post existingPost = postsDao.findAll().get(0);
-//
-//        // Makes a Get request to /posts/{id} and expect a redirection to the Post show page
-//        this.mvc.perform(get("/posts/" + existingPost.getId()))
-//                .andExpect(status().isOk())
-//                // Test the dynamic content of the page
-//                .andExpect(content().string(containsString(existingPost.getTitle())));
-//    }
-
     @Test
     public void testPostsIndex() throws Exception {
         Post existingPost = postsDao.findAll().get(0);
@@ -123,21 +111,24 @@ public class PostsIntegrationTests {
 
     @Test
     public void testDeletePost() throws Exception {
-        // Creates a test Post to be deleted
+        // Creates test Post to delete
         this.mvc.perform(
                 post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("title", "Post to be deleted")
+                        .param("title", "Delete Post Test")
                         .param("description", "won't last long"))
                 .andExpect(status().is3xxRedirection());
 
-        // Get the recent Post that matches the title
-        Post existingPost = postsDao.findByTitle("Post to be deleted");
+        // Get test Post by title
+        Post deletePost = postsDao.findByTitle("Delete Post Test");
+        // Get test Post by Id
+        long postId = deletePost.getId();
 
-        // Makes a Post request to /posts/{id}/delete and expect a redirection to the Posts index
+        // Make Post request to /posts/delete and expect a redirection to the Posts index
         this.mvc.perform(
                 post("/posts/delete")
-                        .session((MockHttpSession) httpSession))
+                        .session((MockHttpSession) httpSession)
+                        .param("deletePostId", String.valueOf(postId)))
                 .andExpect(status().is3xxRedirection());
     }
 }
