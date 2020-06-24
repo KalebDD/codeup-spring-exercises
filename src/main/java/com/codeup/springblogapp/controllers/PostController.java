@@ -27,7 +27,7 @@ public class PostController {
         this.emailService = emailService;
     }
 
-    // Main - show all the posts for the user ==========================
+    // Main - show all the posts for the website ==========================
     @GetMapping("/posts")
     public String viewAllPosts(Model model) {
         model.addAttribute("allPosts", postDao.findAll());

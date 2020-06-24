@@ -20,3 +20,8 @@ div.modal-footer {
 .userNav {
     margin-right: 20px;
 }
+
+.dropdown-menu {
+    min-width: 250px;
+    padding: 5px 10px;
+}
