@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthenticationController {
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String showLoginForm() {
-        return "users/login";
+        return "posts/index";
+    }
+
+    @PostMapping("/login")
+    public String test() {
+        return "posts/index";
     }
 }
