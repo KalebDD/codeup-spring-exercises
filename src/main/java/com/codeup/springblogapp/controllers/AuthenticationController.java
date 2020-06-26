@@ -12,9 +12,4 @@ public class AuthenticationController {
     public String showLoginForm() {
         return "users/login";
     }
-
-    @PostMapping("/login")
-    public String login(@ModelAttribute User user) {
-        return "redirect:/posts";
-    }
 }
