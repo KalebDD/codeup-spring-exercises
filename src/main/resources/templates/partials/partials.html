@@ -38,7 +38,8 @@
 
                 <div class="divider"></div>
 
-                <div>New around here?<a class="dropdown-item" th:href="@{/users/register}">Register</a></div>
+                <div>New around here?<button type="button" class="dropdown-item btn btn-link" id="registerButton" data-toggle="modal"
+                                        data-target="#registerModal"> Sign up!</button></div>
             </div>
         </div>
     </ul>
@@ -49,13 +50,42 @@
                 <li><a href="/profile">My Posts</a></li>
                 <li><a href="#">My Profile</a></li>
                 <li role="separator" class="divider"></li>
-                <form th:action="@{/logout}" th:method="post">
+                <form th:action="@{/logout}" method="POST">
                     <button class="btn-link btn btn-warning" style="margin-top: 8px">Logout</button>
                 </form>
             </ul>
         </li>
     </ul>
 </nav>
+
+<!-- Register Modal -->
+<div th:fragment="registerModal" class="modal fade" id="registerModal" tabindex="-1" role="dialog"
+     aria-labelledby="createModalLabel"
+     aria-hidden="true">
+    <!-- Create Form -->
+    <form th:action="@{/users/register}" method="POST" th:object="${user}">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <label for="username">Username</label>
+                    <input id="username" th:field="*{username}" />
+
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{email}" />
+
+                    <label for="password">Password</label>
+                    <input id="password" type="password" th:field="*{password}" />
+                </div>
+                <div class="modal-footer">
+                    <input value="Sign me up!" type="submit" />
+                    <!--<button type="submit" class="btn btn-primary" name="create">Create Post</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <!-- ALl Modal Fragments - Create, Edit, Delete -->
 <div th:fragment="allModals">
@@ -119,7 +149,7 @@
         </form>
     </div>
 
-    <!-- Delete Modal -->
+    <!-- Post Delete Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
          aria-hidden="true">
         <!-- Delete Form -->

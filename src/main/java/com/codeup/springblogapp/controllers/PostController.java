@@ -29,7 +29,7 @@ public class PostController {
 
     // Main - show all the posts for the website ==========================
     @GetMapping("/posts")
-    public String viewAllPosts(Model model) {
+    public String viewAllPosts(@ModelAttribute User user, Model model) {
         model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
     }
