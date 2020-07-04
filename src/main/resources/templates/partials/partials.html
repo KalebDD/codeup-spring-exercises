@@ -62,7 +62,7 @@
 <div th:fragment="registerModal" class="modal fade" id="registerModal" tabindex="-1" role="dialog"
      aria-labelledby="createModalLabel"
      aria-hidden="true">
-    <!-- Create Form -->
+    <!-- Register Form -->
     <form th:action="@{/users/register}" method="POST" th:object="${user}">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -79,7 +79,6 @@
                 </div>
                 <div class="modal-footer">
                     <input value="Sign me up!" type="submit" />
-                    <!--<button type="submit" class="btn btn-primary" name="create">Create Post</button>-->
                 </div>
             </div>
         </div>

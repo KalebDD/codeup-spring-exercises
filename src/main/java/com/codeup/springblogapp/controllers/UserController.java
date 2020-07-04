@@ -24,12 +24,8 @@ public class UserController {
         this.users = users;
     }
 
-    @GetMapping("/users/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "users/register";
-    }
-
+    // No HTML @ this URL
+    // Takes register form, hashes password, redirects back to main
     @PostMapping("/users/register")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
