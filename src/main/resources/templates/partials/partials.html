@@ -19,7 +19,8 @@
     </ul>
     <ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right userNav">
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Login <span class="caret"></span>
             </button>
             <div class="dropdown-menu">
@@ -27,25 +28,31 @@
                 <form class="px-4 py-3" th:action="@{/login}" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="username"
+                               required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Sign in</button>
                 </form>
 
                 <div class="divider"></div>
 
-                <div>New around here?<button type="button" class="dropdown-item btn btn-link" id="registerButton" data-toggle="modal"
-                                        data-target="#registerModal"> Sign up!</button></div>
+                <div>New around here?
+                    <button type="button" class="dropdown-item btn btn-link" id="registerButton" data-toggle="modal"
+                            data-target="#registerModal"> Sign up!
+                    </button>
+                </div>
             </div>
         </div>
     </ul>
     <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right userNav">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Profile <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="/profile">My Posts</a></li>
                 <li><a href="#">My Profile</a></li>
@@ -60,25 +67,39 @@
 
 <!-- Register Modal -->
 <div th:fragment="registerModal" class="modal fade" id="registerModal" tabindex="-1" role="dialog"
-     aria-labelledby="createModalLabel"
+     aria-labelledby="registerModalLabel"
      aria-hidden="true">
     <!-- Register Form -->
-    <form th:action="@{/users/register}" method="POST" th:object="${user}">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <form class="px-4 py-3" th:action="@{/users/register}" method="POST" th:object="${user}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-body">
 
-                    <label for="username">Username</label>
-                    <input id="username" th:field="*{username}" />
-
-                    <label for="email">Email</label>
-                    <input id="email" th:field="*{email}" />
-
-                    <label for="password">Password</label>
-                    <input id="password" type="password" th:field="*{password}" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title text-left" id="createModalLabel">Register Account</h2>
                 </div>
-                <div class="modal-footer">
-                    <input value="Sign me up!" type="submit" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <br>
+                        <input id="username" th:field="*{username}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <br>
+                        <input id="email" th:field="*{email}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <br>
+                        <input id="password" type="password" th:field="*{password}" required/>
+                    </div>
+                </div>
+                <div class="modal-footer text-left">
+                    <button type="submit" class="btn btn-primary pull-left">Sign me up!</button>
                 </div>
             </div>
         </div>
