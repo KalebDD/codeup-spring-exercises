@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <title>Log In</title>
 </head>
-<body>
-<h1>Log In</h1>
+<body class="text-center">
+<h1>Oops!</h1>
 <div th:if="${param.error}">
-    Invalid Username and Password.
+    <p>Looks like an invalid username or password.</p>
+    <p>Please try again.</p>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>
     <input id="username" name="username" type="text" />
