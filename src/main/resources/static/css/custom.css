@@ -11,6 +11,10 @@ div.modal-footer {
     margin-bottom: 40px;
 }
 
+.my-posts {
+    display: inline-block;
+}
+
 .createButton {
     margin-left: 10px;
     margin-top: -15px;
