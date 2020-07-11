@@ -16,6 +16,9 @@ public class Post {
     @Column(length = 5000)
     private String description;
 
+    @Column
+    private String categories;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;

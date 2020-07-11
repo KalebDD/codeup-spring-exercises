@@ -25,6 +25,14 @@
 
     <h1 class="title text-center">Spring Blog App</h1>
 
+    <h3>Search by Category</h3>
+    <hr>
+    <div class="visible-md-inline-block">
+        <button type="button" class="btn btn-default">Slice of Life</button>
+        <button type="button" class="btn btn-default">Cooking</button>
+        <button type="button" class="btn btn-default">Technology</button>
+    </div>
+
     <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
