@@ -23,11 +23,12 @@
 
 <div class="container">
 
-    <h1 class="title">All Posts</h1>
+    <h1 class="title text-center">Spring Blog App</h1>
 
     <!-- all DB Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
+        <p>submitted by <span id="postUsername" th:text="${post.owner.getUsername()}"></span></p>
         <h4 th:text="${post.description}"></h4>
     </div>
 
