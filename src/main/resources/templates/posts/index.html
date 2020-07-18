@@ -22,15 +22,29 @@
 <div th:replace="partials/partials :: registerModal"/>
 
 <div class="container">
-
-    <h1 class="title text-center">Spring Blog App</h1>
-
-    <h3>Search by Category</h3>
-    <hr>
-    <div class="visible-md-inline-block">
-        <button type="button" class="btn btn-default">Slice of Life</button>
-        <button type="button" class="btn btn-default">Cooking</button>
-        <button type="button" class="btn btn-default">Technology</button>
+    <div class="row">
+        <div class="col-md-2">
+            <h1>Blogs</h1>
+        </div>
+        <div class="col-md-10">
+            <div class="row blog-categories">
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-default">Slice of Life</button>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <button type="button" class="btn btn-default">Cooking</button>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <button type="button" class="btn btn-default">How-To</button>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <button type="button" class="btn btn-default">Inspiration</button>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <button type="button" class="btn btn-default">Other</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- all DB Posts -->
