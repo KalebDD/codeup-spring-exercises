@@ -71,12 +71,12 @@ public class PostController {
     }
 
     // View - single post
-    @GetMapping("/posts/show")
-    public String viewIndividualPost(Model model) {
-        Post singlePost = new Post("Post 3 Title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-
-        model.addAttribute("postTitle", singlePost.getTitle());
-        model.addAttribute("postDescription", singlePost.getDescription());
-        return "posts/show";
-    }
+//    @GetMapping("/posts/show")
+//    public String viewIndividualPost(Model model) {
+//        Post singlePost = new Post("Post 3 Title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+//
+//        model.addAttribute("postTitle", singlePost.getTitle());
+//        model.addAttribute("postDescription", singlePost.getDescription());
+//        return "posts/show";
+//    }
 }

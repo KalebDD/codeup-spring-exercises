@@ -38,3 +38,7 @@ div.modal-footer {
 .blog-categories {
     padding-top: 20px;
 }
+
+.category-dropdown {
+    margin: 20px auto;
+}

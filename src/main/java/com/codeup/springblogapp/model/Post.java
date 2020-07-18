@@ -17,7 +17,7 @@ public class Post {
     private String description;
 
     @Column
-    private String categories;
+    private String category;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -26,14 +26,16 @@ public class Post {
 
     public Post() { }
 
-    public Post(long id, String title, String description) {
+    public Post(long id, String title, String category, String description) {
         this.id = id;
         this.title = title;
+        this.category = category;
         this.description = description;
     }
 
-    public Post(String title, String description) {
+    public Post(String title, String category, String description) {
         this.title = title;
+        this.category = category;
         this.description = description;
     }
 
@@ -56,4 +58,7 @@ public class Post {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCategory() {return category;}
+    public void setCategory(String category) {this.category = category;}
 }
