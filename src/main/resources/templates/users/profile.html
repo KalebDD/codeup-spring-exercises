@@ -23,6 +23,8 @@
     <!-- All User-submitted Posts -->
     <div th:each="post : ${allPosts}">
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
+        <h4>Submitted On <span th:text="${post.createDate}"></span></h4>
+        <h4>Updated On <span th:text="${post.modifyDate}"></span></h4>
         <h4 th:text="${post.description}"></h4>
 
         <!-- Button Edit Modal -->
