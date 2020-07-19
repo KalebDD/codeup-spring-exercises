@@ -13,11 +13,10 @@
 <body>
 
 <!-- Navbar -->
-<nav th:fragment="navbar" class="navbar navbar-default">
+<nav th:fragment="navbar" class="navbar navbar-dark bg-dark">
     <div class="container">
-        <ul class="nav navbar-nav mr-auto">
-            <li><a href="/posts">Spring Blog Application</a></li>
-        </ul>
+        <a class="navbar-brand spring-blog-nav-title" href="/posts">Spring Blog Application</a>
+
         <ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right userNav">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
