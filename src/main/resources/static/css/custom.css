@@ -42,3 +42,9 @@ div.modal-footer {
 .category-dropdown {
     margin: 20px auto;
 }
+
+.card-deck .card {
+    flex-basis: 30%;
+    max-width: 30%;
+
+}

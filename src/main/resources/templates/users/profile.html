@@ -22,6 +22,16 @@
 
     <!-- All User-submitted Posts -->
     <div th:each="post : ${allPosts}">
+
+<!--        <div class="card" style="width: 18rem;">-->
+<!--            <img src="..." class="card-img-top" alt="...">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Card title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
         <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
         <h4>Submitted On <span th:text="${post.createDate}"></span></h4>
         <h4>Updated On <span th:text="${post.modifyDate}"></span></h4>
