@@ -21,32 +21,32 @@
     </button>
 
     <!-- All User-submitted Posts -->
-    <div th:each="post : ${allPosts}">
-
-<!--        <div class="card" style="width: 18rem;">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title">Card title</h5>-->
-<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--            </div>-->
-<!--        </div>-->
-
-        <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
-        <h4>Submitted On <span th:text="${post.createDate}"></span></h4>
-        <h4>Updated On <span th:text="${post.modifyDate}"></span></h4>
-        <h4 th:text="${post.description}"></h4>
-
-        <!-- Button Edit Modal -->
-        <button type="button" class="btn btn-m btn-primary" data-toggle="modal" data-target="#editModal"
-                th:data-id  ="${post.id}" th:data-title="${post.title}" th:data-description="${post.description}" th:data-post="${post}">
-            Edit
-        </button>
-
-        <!-- Button Delete Modal-->
-        <button class="btn btn-m btn-danger" data-toggle="modal" data-target="#deleteModal" th:data-id="${post.id}">
-            Delete
-        </button>
+    <div class="card-deck">
+        <div class="card mb-4" th:each="post : ${allPosts}">
+            <div class="card-body">
+                <h3 class="card-title" th:text="${post.title}"></h3>
+                <button type="button" class="btn btn-outline-info" th:text="${post.category}"></button>
+                <p class="card-text text-wrap" th:text="${post.description}"></p>
+                <!-- Button Edit Modal -->
+                <div class="text-center mt-5">
+                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editModal"
+                            th:data-id="${post.id}" th:data-title="${post.title}"
+                            th:data-description="${post.description}"
+                            th:data-post="${post}">
+                        Edit
+                    </button>
+                    <!-- Button Delete Modal-->
+                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal"
+                            th:data-id="${post.id}">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p class="text-muted">Submitted <span th:text="${post.createDate}"></span></p>
+                <p class="text-muted">Updated <span th:text="${post.modifyDate}"></span></p>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -50,12 +50,13 @@
     <!-- all DB Posts -->
     <div class="card-deck">
         <div class="card mb-4" th:each="post : ${allPosts}">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
+                <h3 class="card-title" th:text="${post.title}"></h3>
                 <button type="button" class="btn btn-outline-info" th:text="${post.category}"></button>
-                <h2 style="color: firebrick; font-weight: bold;" th:text="${post.title}"></h2>
-                <h4 class="col overflow-hidden text-truncate text-nowrap" th:text="${post.description}"></h4>
-                <p>By <span id="postUsername" th:text="${post.owner.getUsername()}"></span></p>
+                <p class="card-text text-wrap" th:text="${post.description}"></p>
+            </div>
+            <div class="card-footer">
+                <p class="text-muted">By <span id="postUsername" th:text="${post.owner.getUsername()}"></span></p>
             </div>
         </div>
     </div>
