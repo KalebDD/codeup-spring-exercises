@@ -21,3 +21,5 @@ $('#deleteModal').on('show.bs.modal', function (e) {
     var modal = $(this);
     modal.find('#deletePostId').val(postId);
 });
+
+$('.blog-category').click()

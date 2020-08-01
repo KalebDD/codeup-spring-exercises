@@ -27,11 +27,7 @@
             <h1>Blogs</h1>
         </div>
         <div class="col-md-10 d-flex justify-content-around ml-n3 pl-0">
-                <a href="#" class="btn btn-outline-info">Slice of Life</a>
-                <a href="#" class="btn btn-outline-info">Cooking</a>
-                <a href="#" class="btn btn-outline-info">How-To</a>
-                <a href="#" class="btn btn-outline-info">Inspiration</a>
-                <a href="#" class="btn btn-outline-info">Other</a>
+            <span class="blog-category" th:each="category : ${T(com.codeup.springblogapp.model.BlogCategory).values()}" th:value="${category}" th:text="${category.categoryValue}"></span>
         </div>
     </div>
 
