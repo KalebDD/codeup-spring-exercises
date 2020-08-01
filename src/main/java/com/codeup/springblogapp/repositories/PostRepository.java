@@ -8,7 +8,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Post deleteById(long id);
 
-    Post findById(long id);
+    Post findAllByCategory(String category);
 
     List<Post> findAllByOwner_Id(long id);
 

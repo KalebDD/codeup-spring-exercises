@@ -2,6 +2,7 @@ package com.codeup.springblogapp.model;
 
 public enum BlogCategory {
 
+    ALL ("ALL"),
     COOKING ("COOKING"),
     HOWTO ("HOW TO"),
     INSPIRATION ("INSPIRATION"),

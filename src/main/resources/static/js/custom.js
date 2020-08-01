@@ -22,4 +22,18 @@ $('#deleteModal').on('show.bs.modal', function (e) {
     modal.find('#deletePostId').val(postId);
 });
 
-$('.blog-category').click()
+$('.blog-category').click(function() {
+   let category = $(this).text();
+   let blogs = $('.selected-blogs');
+
+    console.log(category);
+    console.log(blogs);
+
+    for (let i = 0; i < blogs.length; i++) {
+        if (blogs[i].hasClass(category)) {
+            blogs[i].css('display', 'show');
+        } else {
+            blogs[i].css('display', 'none');
+        }
+    }
+});

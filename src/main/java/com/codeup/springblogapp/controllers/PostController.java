@@ -8,10 +8,9 @@ import com.codeup.springblogapp.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -32,6 +31,12 @@ public class PostController {
     public String viewAllPosts(@ModelAttribute User user, Model model) {
         model.addAttribute("allPosts", postDao.findAll());
         return "posts/index";
+    }
+
+    @GetMapping("/posts/{category}")
+    @ResponseBody
+    public List<Post> filteredPosts (@PathVariable String category) {
+      return (List<Post>) postDao.findAllByCategory(category);
     }
 
     // Create - new post ==========================

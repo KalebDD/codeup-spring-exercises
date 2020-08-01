@@ -27,13 +27,13 @@
             <h1>Blogs</h1>
         </div>
         <div class="col-md-10 d-flex justify-content-around ml-n3 pl-0">
-            <span class="blog-category" th:each="category : ${T(com.codeup.springblogapp.model.BlogCategory).values()}" th:value="${category}" th:text="${category.categoryValue}"></span>
+            <span class="blog-category" th:each="category : ${T(com.codeup.springblogapp.model.BlogCategory).values()}" th:text="${category.categoryValue}"></span>
         </div>
     </div>
 
     <!-- all DB Posts -->
     <div class="card-deck">
-        <div class="card mb-4" th:each="post : ${allPosts}">
+        <div th:each="post : ${allPosts}" class="card mb-4 selected-blogs" th:classappend="${post.category}">
             <div class="card-body">
                 <h3 class="card-title" th:text="${post.title}"></h3>
                 <button type="button" class="btn btn-outline-info" th:text="${post.category}"></button>
